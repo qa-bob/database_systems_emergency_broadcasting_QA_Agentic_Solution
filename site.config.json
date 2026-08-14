@@ -1,8 +1,8 @@
 ﻿{
     "name":  "Database Systems Emergency Broadcasting",
     "url":  "http://www.emergency-broadcasting.com",
-    "description":  "",
-    "industry":  "",
+    "description":  "Emergency broadcasting and alerting platform providing mass notification systems for public safety and emergency communications.",
+    "industry":  "Emergency Communications / Public Safety Technology",
     "hasContactForm":  true,
     "expectedNavItems":  [
 

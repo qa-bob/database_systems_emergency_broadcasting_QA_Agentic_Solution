@@ -1,0 +1,20 @@
+# CODEOWNERS
+# Defines who is automatically requested to review pull requests for specific paths.
+# Format: <path pattern>  <@user or @org/team>
+
+# Default owner for everything not matched below
+* @rosmall
+
+# Core framework files — require careful review
+src/pages/base.page.ts       @rosmall
+src/fixtures/site.fixture.ts @rosmall
+playwright.config.ts          @rosmall
+site.config.json              @rosmall
+
+# CI pipeline
+.github/workflows/            @rosmall
+
+# Claude Code configuration
+.claude/                      @rosmall
+CLAUDE.md                     @rosmall
+AGENTS.md                     @rosmall
