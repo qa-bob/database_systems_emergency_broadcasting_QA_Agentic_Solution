@@ -31,10 +31,7 @@ test.describe('Emergency Broadcasting Services @functional', () => {
         '[class*="product"], [class*="offering"]'
       ).filter({ hasText: /.{20,}/ }).first();
 
-      if (await serviceSection.count() === 0) {
-        console.warn('[functional] No identifiable services/features section found on homepage.');
-        return;
-      }
+      test.skip(await serviceSection.count() === 0, 'No identifiable services/features section found on homepage');
 
       await expect(serviceSection).toBeVisible();
     });
@@ -131,7 +128,7 @@ test.describe('Emergency Broadcasting Services @functional', () => {
 
           if (response && response.status() < 400) {
             found = true;
-            await page.waitForLoadState('networkidle');
+            await page.waitForLoadState('load');
             const heading = await page.locator('h1, h2').first().textContent();
             expect(heading?.trim().length ?? 0, 'Services page should have a heading').toBeGreaterThan(0);
             break;
@@ -172,10 +169,7 @@ test.describe('Emergency Broadcasting Services @functional', () => {
         hasText: /contact|get in touch|reach out|call us|email us|request info|demo/i,
       }).first();
 
-      if (await contactCta.count() === 0) {
-        console.warn('[functional] No visible contact CTA found on homepage.');
-        return;
-      }
+      test.skip(await contactCta.count() === 0, 'No visible contact CTA found on homepage');
 
       await expect(contactCta).toBeVisible();
     });
@@ -215,7 +209,7 @@ test.describe('Emergency Broadcasting Services @functional', () => {
 
   test.describe('Link integrity', () => {
     test('no broken internal links on homepage @functional', async ({ page, siteConfig }) => {
-      await page.goto(siteConfig.url, { waitUntil: 'networkidle' });
+      await page.goto(siteConfig.url, { waitUntil: 'load' });
 
       const siteOrigin = new URL(siteConfig.url).origin;
 

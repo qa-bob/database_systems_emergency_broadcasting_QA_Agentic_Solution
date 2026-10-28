@@ -81,10 +81,7 @@ test.describe('Homepage Features @functional', () => {
     const footer = page.locator('footer, [role="contentinfo"]').first();
     const footerExists = await footer.count() > 0;
 
-    if (!footerExists) {
-      console.warn('[functional] No <footer> or role="contentinfo" element found.');
-      return;
-    }
+    test.skip(!footerExists, 'No <footer> or role="contentinfo" element found');
 
     await expect(footer).toBeVisible();
 
@@ -114,7 +111,7 @@ test.describe('Homepage Features @functional', () => {
   // ── Images ────────────────────────────────────────────────────────────────────
 
   test('homepage images load without errors @functional', async ({ page, siteConfig }) => {
-    await page.goto(siteConfig.url, { waitUntil: 'networkidle' });
+    await page.goto(siteConfig.url, { waitUntil: 'load' });
 
     const brokenImages = await page.evaluate<string[]>(() => {
       const imgs = Array.from(document.querySelectorAll('img'));
